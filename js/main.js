@@ -36,7 +36,7 @@ if (getCookie("nightMode") === "true") {
 function checkTheme() {
   if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
     // Karanlık tema tercih ediliyorsa
-    document.body.classList.add('nightMode');
+    //document.body.classList.add('nightMode');
   } else {
     // Açık tema tercih ediliyorsa
     document.body.classList.remove('nightMode');

@@ -84,7 +84,7 @@ textarea.phone-input {
   resize: none;
 }
 
-.phone-input#emailCode {
+.phone-input#emailCode, .phone-input#smsCode {
   text-align: center;
   letter-spacing: 4px;
   margin: 0 0 20px 0;
@@ -474,7 +474,7 @@ textarea.phone-input {
 
 .fixed-bottom {
   left: 50%;
-  bottom: 20px;
+  bottom: 35px;
   transform: translate(-50%, 0);
   width: 335px;
   position: fixed;

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>DH Giriş</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="css/style.css" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+</head>
+
+<body>
+  <div class="page-content">
+    <div class="container">
+      <div class="header">
+        <img class="logo" src="img/dh-giris-logo.png" />
+      </div>
+
+      <p class="regular-info">
+        Hesaba bağlamak istediğiniz e-posta’yı girin.
+      </p>
+
+      <div class="input-area">
+        <input type="text" class="phone-input inputText mailData" placeholder="E-Posta"
+          onkeyup="disableAnotherInput('eMail', $(this).val())" />
+        <span class="floating-label">E-Posta</span>
+      </div>
+
+      <div class="action-button passive">E-Posta’yı Hesabıma Bağla</div>
+
+      <div class="fixed-bottom">
+        <p class="regular-info">
+            Üyeliğinizle ilgili sorun mu yaşıyorsunuz?
+        </p>
+        <div class="regular-button">
+            Yardım Paneli
+        </div>
+    </div>
+
+    </div>
+  </div>
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/main.js"></script>
+
+  <script>
+    function disableAnotherInput(type, value) {
+      const hasValue = value.length > 0;
+      $(".mailData").prop("disabled", false);
+
+      if (hasValue) {
+
+        $(".action-button").removeClass("passive");
+      }
+      else {
+        $(".action-button").addClass("passive");
+      }
+    }
+  </script>
+</body>
+
+</html>

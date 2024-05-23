@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>DH Giriş</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <div class="page-content">
+    <div class="container">
+      <div class="header">
+        <img class="logo" src="img/dh-giris-logo.png" />
+      </div>
+
+      <p class="regular-info">
+        <b>+90 (500) 108 ** **</b> numaralı eski GSM numaranızın son 4 hanesini aşağıdaki kutuya girin.
+      </p>
+
+      <input id="smsCode" type="text" name="smsCode" class="phone-input" placeholder="- - - -" />
+
+      <p class="regular-info mt-0">
+        Yeni numaranızın tam halini aşağıdaki kutuya girin.
+      </p>
+
+      <div class="custom-phone-input input-area">
+        <div class="country-code">
+          <span class="title">Ülke Kodu</span>
+          <span class="prefix">+90 <img src="img/turkiye-flag.png" /></span>
+        </div>
+        <input
+          id="phone"
+          type="tel"
+          name="phone"
+          class="phone-input inputText"
+          placeholder="Cep Telefonu"
+        />
+
+        <span class="floating-label">Cep Telefonu</span>
+      </div>
+
+      <div class="regular-button">Yeni Numarama SMS ile Kod Gönder</div>
+
+      <div class="fixed-bottom no-fixed">
+        <p class="regular-info">
+          Giriş ve kayıt ile ilgili sorun mu yaşıyorsunuz?
+        </p>
+        <div class="regular-button">
+          Yardım Paneli
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jquery.inputmask.bundle.js"></script>
+  <script src="js/main.js"></script>
+
+  <script>
+    $('.phone-input[name="smsCode"]').inputmask({
+      mask: "9 9 9 9",
+      placeholder: "-",
+    });
+
+    $('.phone-input[name="smsCode"]').mouseout(function () {
+      var val = $(this).val();
+      var color = val === "" ? "#cec2aa" : "";
+      $(this).css("color", color);
+    });
+    $('.phone-input[name="smsCode"]').mouseover(function () {
+      $(this).css("color", "");
+    });
+    $('.phone-input[name="smsCode"]').keydown(function () {
+      $(this).css("color", "");
+    });
+
+
+    $('.phone-input[type="tel"]').inputmask("(9 9 9) 9 9 9  9 9 9 9");
+  </script>
+</body>
+
+</html>

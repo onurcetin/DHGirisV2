@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+<title>DH Giriş</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="css/style.css"/>
+    </head>
+    <body>
+        <div class="page-content">
+           <div class="container">
+                <div class="header">
+                    <img class="logo" src="img/dh-giris-logo.png"/>
+                </div>
+
+                <p class="regular-info">
+                    Kayıtlı e-posta ve şifrenizle giriş yapabilirsiniz.
+                </p>
+
+
+                <div class="input-area">
+                    <input type="text" class="phone-input inputText" placeholder="E-posta"/>
+                    <span class="floating-label">E-posta</span>
+                </div>
+
+                <div class="input-area">
+                    <input type="password" class="phone-input inputText" placeholder="Şifre"/>
+                    <span class="floating-label">Şifre</span>
+                </div>
+
+                <div class="captcha-area">
+                    <img src="temp/captcha.png"/>
+                </div>
+
+                <div class="action-button">
+                    Giriş Yap
+                </div>
+                <div class="action-button passive">
+                    Giriş Yap
+                </div>
+
+                <p class="regular-info">
+                    Aşağıdaki hesaplarınızla da bağlanabilirsiniz.
+                </p>
+
+                <div class="social-area">
+                    <a href="#" class="button apple">
+                        <img src="img/apple.webp"/>
+                    </a>
+                    <a href="#" class="button facebook">
+                        <img src="img/facebook.webp"/>
+                    </a>
+                    <a href="#" class="button google">
+                        <img src="img/google.webp"/>
+                    </a>
+                </div>
+
+                <div class="fixed-bottom no-fixed">
+                    <p class="regular-info">
+                        Giriş ve kayıt ile ilgili sorun mu yaşıyorsunuz?
+                    </p>
+                    <div class="regular-button">
+                        Yardım Paneli
+                    </div>
+                </div>
+           </div>
+        </div>
+
+
+        <script src="js/jquery.min.js"></script>
+        <script src="js/main.js"></script>
+        <script>
+            $(document).ready(function(){
+                const inputs = $(".inputText");
+
+                for (let i = 0; i < inputs.length; i++) {
+                    const element = inputs.eq(i);
+
+                    if(element.val()){
+                        element.addClass("hasValue")
+                    }
+                    
+                }
+            });
+
+            $(".inputText").change(function(){
+                if(!$(this).val()){
+                    $(this).removeClass("hasValue")
+                }
+            });
+
+            $(".inputText").focusout(function(){
+                if($(this).val()){
+                    $(this).addClass("hasValue")
+                }
+            })
+        </script>
+
+    </body>
+</html>

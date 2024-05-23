@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>DH Giriş</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+  </head>
+  <body>
+    <div class="page-content pb-50">
+      <div class="container">
+        <div class="header">
+          <img class="logo" src="img/dh-giris-logo.png" />
+        </div>
+
+        <p class="regular-info">
+          İletişim nedeninizi ve diğer ayrıntıları girerek mesajınızı bize ulaştırabilirsiniz.
+        </p>
+
+        <div class="input-area">
+         <div class="custom-select">
+          <select name="reason" id="reason" class="select">
+            <option value="">İletişim Nedeni</option>
+            <option value="">...</option>
+          </select>
+         </div>
+        </div>
+
+        <div class="input-area">
+          <input
+            type="text"
+            class="phone-input inputText"
+            placeholder="İsminiz veya kullanıcı adınız"
+          />
+          <span class="floating-label">İsminiz veya kullanıcı adınız</span>
+        </div>
+        <!-- <div class="input-area">
+          <input
+            type="text"
+            class="phone-input inputText error"
+            placeholder="İsminiz veya kullanıcı adınız"
+          />
+          <span class="floating-label">İsminiz veya kullanıcı adınız</span>
+        </div> -->
+
+        <div class="input-area">
+          <input
+            type="text"
+            class="phone-input inputText mailData"
+            placeholder="E-posta adresiniz"
+            onkeyup="disableAnotherInput('eMail', $(this).val())"
+          />
+          <span class="floating-label">E-posta adresiniz</span>
+        </div>
+
+        <div class="input-area">
+          <input
+            type="text"
+            class="phone-input inputText mailData"
+            placeholder="Telefon numaranız (isteğe bağlı)"
+          />
+          <span class="floating-label">Telefon numaranız (isteğe bağlı)</span>
+        </div>
+
+        <div class="input-area">
+          <textarea class="phone-input inputText"
+          placeholder="Mesajınızı buraya girin..."></textarea>
+          <span class="floating-label">Mesajınızı buraya girin...</span>
+        </div>
+
+
+        <div class="action-button">Gönder</div>
+
+        <div class="info-fixed-bottom">
+          <div class="general-info success mt-0">
+            İletişim mesajınız başarıyla gönderildi.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.inputmask.bundle.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+      const phoneInputField = document.querySelector("#phone");
+      const phoneInput = window.intlTelInput(phoneInputField, {
+        utilsScript:
+          "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+      });
+    </script>
+
+    <script>
+      $(".inputText").change(function () {
+        if (!$(this).val()) {
+          $(this).removeClass("hasValue");
+        }
+      });
+
+      $(".inputText").focusout(function () {
+        if ($(this).val()) {
+          $(this).addClass("hasValue");
+        }
+      });
+
+      $('.phone-input[type="tel"]').inputmask("(9 9 9) 9 9 9  9 9 9 9");
+
+      function disableAnotherInput(type, value) {
+        if (value.length > 0) {
+          if (type === "eMail") {
+            $(".phoneData").prop("disabled", true);
+          }
+          if (type === "phone") {
+            $(".mailData").prop("disabled", true);
+          }
+        } else {
+          if (type === "eMail") {
+            $(".phoneData").prop("disabled", false);
+          }
+          if (type === "phone") {
+            $(".mailData").prop("disabled", false);
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

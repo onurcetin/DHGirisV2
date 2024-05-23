@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>DH Giriş</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <div class="page-content">
+    <div class="container">
+      <div class="centered-text">
+        <p class="regular-info">
+          <b>Üyenin, yardıma girmeden önce bulunduğu sayfa.</b>
+        </p>
+        <p class="regular-info">
+          Bu sayfa, üyenin "kullanıcı adı" ile giriş yapmayı denediği sayfa da
+          olabilir, "bir haberin detayı" da (uygulamada bir haber
+          detayındayken sağ üstteki menüden yardım paneline girdiyse mesela)
+          olabilir.
+        </p>
+        <p class="regular-info">
+          Örnekteki yeşil bilgilendirme, o sayfanın altına yüzer halde
+          basılacak. Web'de ise bu örnekteki gibi, app'te ise app için
+          tasarladığımız haliyle gösterilecek (onun tasarımı da "app v3"
+          projesinde "bildirimler" section'ında bulunabilir).
+        </p>
+      </div>
+
+      <div class="info-fixed-bottom">
+        <div class="general-info success">
+          Kullanıcı adınız gönderilmiştir.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/main.js"></script>
+
+  <script>
+    $(".inputText").change(function () {
+      if (!$(this).val()) {
+        $(this).removeClass("hasValue");
+      }
+    });
+
+    $(".inputText").focusout(function () {
+      if ($(this).val()) {
+        $(this).addClass("hasValue");
+      }
+    });
+  </script>
+</body>
+
+</html>

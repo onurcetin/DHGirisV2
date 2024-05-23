@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>DH Giriş</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+  </head>
+  <body>
+    <div class="page-content">
+      <div class="container">
+        <div class="header">
+          <img class="logo" src="img/dh-giris-logo.png" />
+        </div>
+
+        <p class="regular-info">
+          <b>E-posta adresinizin hatırlatılması</b> için üyeliğinize bağlı
+          aşağıdaki bilgilerden birini girip devam edin.
+        </p>
+
+        <div class="input-area">
+          <input
+            type="text"
+            class="phone-input inputText mailData"
+            placeholder="Kullanıcı Adı"
+            onkeyup="disableAnotherInput('eMail', $(this).val())"
+          />
+          <span class="floating-label">Kullanıcı Adı</span>
+        </div>
+
+        <input
+          id="phone"
+          type="tel"
+          name="phone"
+          class="phone-input phoneData"
+          placeholder="Cep Telefonu"
+          onkeyup="disableAnotherInput('phone', $(this).val())"
+        />
+
+        <div class="custom-phone-input input-area">
+          <div class="country-code">
+            <span class="title">Ülke Kodu</span>
+            <span class="prefix">+90 <img src="img/turkiye-flag.png" /></span>
+          </div>
+          <input
+            id="phone"
+            type="tel"
+            name="phone"
+            class="phone-input inputText phoneData"
+            placeholder="Cep Telefonu"
+            onkeyup="disableAnotherInput('phone', $(this).val())"
+          />
+
+          <span class="floating-label">E-Posta</span>
+        </div>
+
+        <div class="captcha-area">
+          <img src="temp/captcha.png" />
+        </div>
+
+        <div class="action-button">E-posta Adresimi Hatırlat</div>
+        <div class="action-button passive">E-posta Adresimi Hatırlat</div>
+
+        <div class="info-fixed-bottom">
+          <div class="general-info success">
+            Üyelik bilgilerini içeren bir e-posta, kayıtlı adresinize
+            (n***i@gmail.com) gönderildi.
+          </div>
+
+          <div class="general-info success">
+            E-posta adresiniz SMS ile gönderildi.
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.inputmask.bundle.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+      const phoneInputField = document.querySelector("#phone");
+      const phoneInput = window.intlTelInput(phoneInputField, {
+        utilsScript:
+          "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+      });
+    </script>
+
+    <script>
+      $(".inputText").change(function () {
+        if (!$(this).val()) {
+          $(this).removeClass("hasValue");
+        }
+      });
+
+      $(".inputText").focusout(function () {
+        if ($(this).val()) {
+          $(this).addClass("hasValue");
+        }
+      });
+
+      $('.phone-input[type="tel"]').inputmask("(9 9 9) 9 9 9  9 9 9 9");
+
+      function disableAnotherInput(type, value) {
+        if (value.length > 0) {
+          if (type === "eMail") {
+            $(".phoneData").prop("disabled", true);
+          }
+          if (type === "phone") {
+            $(".mailData").prop("disabled", true);
+          }
+        } else {
+          if (type === "eMail") {
+            $(".phoneData").prop("disabled", false);
+          }
+          if (type === "phone") {
+            $(".mailData").prop("disabled", false);
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

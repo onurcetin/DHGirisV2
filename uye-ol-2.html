@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+<title>DH Giriş</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="css/style.css"/>
+    </head>
+    <body>
+        <div class="page-content">
+           <div class="container">
+                <div class="header">
+                    <img class="logo" src="img/dh-giris-logo.png"/>
+                </div>
+
+                <p class="regular-info">
+                    <b>+90 (500) 108 2233</b> numaralı telefon ile kaydınızı tamamlamak için aşağıdaki alanları doldurun.
+                </p>
+
+                <div class="input-area">
+                    <input type="text" class="phone-input error inputText" placeholder="Kullanıcı Adı (Zorunlu)"/>
+                    <span class="floating-label">Kullanıcı Adı</span>
+                </div>
+
+                <div class="input-area">
+                    <input type="text" class="phone-input inputText" placeholder="Kullanıcı Adı (Zorunlu)" value="num"/>
+                    <span class="floating-label">Kullanıcı Adı</span>
+                </div>
+
+                <div class="input-area">
+                    <input type="text" class="phone-input inputText" placeholder="E-Posta (İsteğe Bağlı)" value="numancebi@gmail.com"/>
+                    <span class="floating-label">E-Posta</span>
+                </div>
+                  
+                <p class="regular-info">
+                    Zorunlu alanları doldurup devam edin. Üye olarak, <a href="#" class="link"><b>Kullanım Koşulları</b></a> hükümlerini kabul etmiş olursunuz.
+                </p>
+
+                <div class="action-button">
+                    Kaydı Tamamla
+                </div>
+                <div class="action-button passive">
+                    Kaydı Tamamla
+                </div>
+           </div>
+        </div>
+
+        <script src="js/jquery.min.js"></script>
+        <script src="js/main.js"></script>
+        <script>
+            $(document).ready(function(){
+                const inputs = $(".inputText");
+
+                for (let i = 0; i < inputs.length; i++) {
+                    const element = inputs.eq(i);
+
+                    if(element.val()){
+                        element.addClass("hasValue")
+                    }
+                    
+                }
+            });
+
+            $(".inputText").change(function(){
+                if(!$(this).val()){
+                    $(this).removeClass("hasValue")
+                }
+            });
+
+            $(".inputText").focusout(function(){
+                if($(this).val()){
+                    $(this).addClass("hasValue")
+                }
+            })
+        </script>
+
+    </body>
+</html>

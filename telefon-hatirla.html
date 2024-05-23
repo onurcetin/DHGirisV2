@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+<title>DH Giriş</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="css/style.css"/>
+
+    </head>
+    <body>
+        <div class="page-content">
+           <div class="container">
+                <div class="header">
+                    <img class="logo" src="img/dh-giris-logo.png"/>
+                </div>
+
+                <p class="regular-info">
+                    <b>Telefon numaranızın hatırlatılması</b> için üyeliğinize bağlı aşağıdaki bilgiyi girip devam edin.
+                </p>
+
+                <div class="input-area">
+                    <input type="text" class="phone-input inputText" placeholder="E-Posta"/>
+                    <span class="floating-label">E-Posta</span>
+                </div>
+
+                <div class="captcha-area">
+                    <img src="temp/captcha.png"/>
+                </div>
+
+                <div class="action-button">
+                    Telefon Numaramı Hatırlat
+                </div>
+                <div class="action-button passive">
+                    Telefon Numaramı Hatırlat
+                </div>
+
+                <div class="info-fixed-bottom">
+                    <div class="general-info success">
+                        Telefon numaranız gönderildi.
+                    </div>
+                </div>
+           </div>
+        </div>
+
+        <script src="js/jquery.min.js"></script>
+        <script src="js/main.js"></script>
+
+
+        <script>
+
+            $(".inputText").change(function(){
+                if(!$(this).val()){
+                    $(this).removeClass("hasValue")
+                }
+            });
+
+            $(".inputText").focusout(function(){
+                if($(this).val()){
+                    $(this).addClass("hasValue")
+                }
+            });
+        </script>
+    </body>
+</html>

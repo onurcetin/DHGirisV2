@@ -23,9 +23,8 @@
         bilgilerden birini girip devam edin.
       </p>
 
-      <div class="input-area">
-        <input type="text" class="phone-input inputText mailData" placeholder="E-Posta"
-          onkeyup="disableAnotherInput('eMail', $(this).val())" />
+      <div class="eposta-input input-area" style="display: none;">
+        <input type="text" class="phone-input inputText mailData" placeholder="E-Posta"/>
         <span class="floating-label">E-Posta</span>
       </div>
 
@@ -34,8 +33,7 @@
           <span class="title">Ülke Kodu</span>
           <span class="prefix">+90 <img src="img/turkiye-flag.png" /></span>
         </div>
-        <input id="phone" type="tel" name="phone" class="phone-input inputText phoneData" placeholder="Cep Telefonu"
-          onkeyup="disableAnotherInput('phone', $(this).val())" />
+        <input id="phone" type="tel" name="phone" class="phone-input inputText phoneData" placeholder="Cep Telefonu" />
 
         <span class="floating-label">E-Posta</span>
       </div>
@@ -82,23 +80,22 @@
 
     $('.phone-input[type="tel"]').inputmask("(9 9 9) 9 9 9  9 9 9 9");
 
-    function disableAnotherInput(type, value) {
-      const hasValue = value.length > 0;
-      $(".phoneData, .mailData").prop("disabled", false);
-
-      if (hasValue) {
-        if (type === "eMail") {
-          $(".phoneData").prop("disabled", true);
-        } else if (type === "phone") {
-          $(".mailData").prop("disabled", true);
-        }
-
-        $(".action-button").removeClass("passive");
+    $(".phone-input").keyup(function (e) {
+      if (e.target.value.length > 0) {
+        $(".action-button.passive").removeClass("passive")
       }
-      else{
-        $(".action-button").addClass("passive");
+      else {
+        $(".action-button").addClass("passive")
       }
-    }
+    });
+
+
+    // TEMP
+    $(".action-button").click(function(){
+      $(".eposta-input").css("display","block")   
+      $(".custom-phone-input").css("display","none");
+      $(".action-button").addClass("passive")       
+    });
   </script>
 </body>
 

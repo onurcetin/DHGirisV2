@@ -20,19 +20,8 @@
         <img class="logo" src="img/dh-giris-logo.png" />
       </div>
 
-      <input id="phone" type="tel" name="phone" class="phone-input" placeholder="Cep Telefonu" />
 
       <div class="custom-phone-input input-area">
-        <div class="country-code">
-          <span class="title">Ülke Kodu</span>
-          <span class="prefix">+90 <img src="img/turkiye-flag.png" /></span>
-        </div>
-        <input id="phone" type="tel" name="phone" class="phone-input inputText" placeholder="Cep Telefonu" />
-
-        <span class="floating-label">Cep Telefonu</span>
-      </div>
-
-      <div class="custom-phone-input input-area error">
         <div class="country-code">
           <span class="title">Ülke Kodu</span>
           <span class="prefix">+90 <img src="img/turkiye-flag.png" /></span>
@@ -104,7 +93,7 @@
         yapabilirsiniz. <a href="#" class="link">Ayrıntılı Bilgi</a>
       </p>
 
-      <div class="info-fixed-bottom">
+      <div class="info-fixed-bottom" style="display: none;">
         <div class="general-info error">
           Geçerli bir telefon numarası girmediniz.
         </div>
@@ -125,13 +114,13 @@
     });
   </script>
 
-  <script>
+  <!-- <script>
     const phoneInputField = document.querySelector("#phone");
     const phoneInput = window.intlTelInput(phoneInputField, {
       utilsScript:
         "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
     });
-  </script>
+  </script> -->
 
   <script>
 
@@ -165,6 +154,13 @@
         $(".captcha-area").css("display", "none")
           (".action-button").addClass("passive")
       }
+    });
+
+
+    // TEMP
+    $(".action-button").click(function(){
+      $(".custom-phone-input.input-area").addClass("error");
+      $(".info-fixed-bottom").css("display","inline-block")
     })
   </script>
 </body>

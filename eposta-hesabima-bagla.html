@@ -28,7 +28,7 @@
         <span class="floating-label">E-Posta</span>
       </div>
 
-      <div class="action-button passive">E-Posta’yı Hesabıma Bağla</div>
+      <div class="regular-button action passive">E-Posta’yı Hesabıma Bağla</div>
 
       <div class="fixed-bottom">
         <p class="regular-info">
@@ -52,10 +52,10 @@
 
       if (hasValue) {
 
-        $(".action-button").removeClass("passive");
+        $(".regular-button.action").removeClass("passive");
       }
       else {
-        $(".action-button").addClass("passive");
+        $(".regular-button.action").addClass("passive");
       }
     }
   </script>

@@ -240,6 +240,11 @@ textarea.phone-input {
   margin: 0 0 20px 0;
   cursor: pointer;
 }
+.regular-button.passive{
+  background-color: #ccc;
+  color: #999;
+  pointer-events: none;
+}
 
 .social-area {
   width: 100%;

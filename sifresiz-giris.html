@@ -16,12 +16,17 @@
       </div>
 
       <p class="regular-info">
-        <b>+90 (500) 108 22 44</b> numaralı yeni telefon numaranıza SMS ile gönderilen <b>XYZ123</b> referanslı tek kullanımlık kodu kutucuğa girin ya da ekranınızı kaplayan operatör mesajına onay verin.
+        Kayıtlı e-posta adresinizle şifresiz giriş yapabilirsiniz.
       </p>
 
-      <input id="smsCode" type="text" name="smsCode" class="phone-input" placeholder="- - - - - -" />
+      <div class="input-area">
+        <input type="text" class="phone-input inputText" placeholder="E-posta" />
+        <span class="floating-label">E-posta</span>
+      </div>
 
-      <div class="regular-button">Kodu Tekrar Gönder <span id="counter">(03:00)</span></div>
+      <div class="regular-button action passive">E-posta ile Giriş Bağlantısı Gönder</div>
+      <div class="regular-button action again" style="display: none;">Giriş Bağlantısını Tekrar Gönder <span
+          id="counter">(03:00)</span></div>
 
       <div class="fixed-bottom">
         <p class="regular-info">
@@ -31,22 +36,16 @@
           Yardım Paneli
         </div>
       </div>
+    </div>
+  </div>
 
-      <div class="info-fixed-bottom">
-        <div class="general-info success">
-          Değişiklik doğrulandı, yönlendiriliyorsunuz.
-        </div>
-      </div>
-
-      <div class="popup-info">
-        <div class="box">
-          <p class="text">
-            Aynı telefon numarası için <b>3 dakikada bir</b> yeni doğrulama
-            kodu talebinde bulunabilirsiniz.<span id="counter2">(03:00 Kaldı)</span>
-          </p>
-          <div class="regular-button">Tamam</div>
-        </div>
-      </div>
+  <div class="popup-info" style="display: none;">
+    <div class="box">
+      <p class="text">
+        Aynı telefon numarası için <b>3 dakikada bir</b> yeni doğrulama
+        kodu talebinde bulunabilirsiniz.<span id="counter2">(03:00 Kaldı)</span>
+      </p>
+      <div class="regular-button">Tamam</div>
     </div>
   </div>
 
@@ -55,26 +54,28 @@
   <script src="js/main.js"></script>
 
   <script>
-    $('.phone-input[name="smsCode"]').inputmask({
-      mask: "9 9 9 9 9 9",
-      placeholder: "-",
+    $(".phone-input").keyup(function (e) {
+      if (e.target.value.length > 0) {
+        $(".regular-button.action.passive").removeClass("passive")
+      }
+      else {
+        $(".regular-button.action").addClass("passive")
+      }
     });
 
-    $('.phone-input[name="smsCode"]').mouseout(function () {
-      var val = $(this).val();
-      var color = val === "" ? "#cec2aa" : "";
-      $(this).css("color", color);
-    });
-    $('.phone-input[name="smsCode"]').mouseover(function () {
-      $(this).css("color", "");
-    });
-    $('.phone-input[name="smsCode"]').keydown(function () {
-      $(this).css("color", "");
-    });
+    $(".regular-button.action").click(function () {
+      $(".regular-button.action").css("display", "none");
+      $(".regular-button.action.again").css("display", "inline-block");
+      startTimer();
+    })
+
+    $(".regular-button.action.again").click(function(){
+      $(".popup-info").css("display","inline-block")
+    })
   </script>
 
   <script>
-    window.onload = function () {
+    function startTimer() {
       var counter = 180; // 3 dakika * 60 saniye
       var interval = setInterval(function () {
         document.getElementById('counter').innerText = '(' + formatTime(counter) + ')';
@@ -85,8 +86,7 @@
           document.getElementById('counter').style.display = 'none';
         }
       }, 1000);
-    };
-
+    }
     function formatTime(seconds) {
       var minutes = Math.floor(seconds / 60);
       var remainingSeconds = seconds % 60;

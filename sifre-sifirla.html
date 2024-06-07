@@ -6,7 +6,6 @@
   <title>DH Giriş</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="css/style.css" />
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
 </head>
@@ -17,38 +16,36 @@
       <div class="header">
         <img class="logo" src="img/dh-giris-logo.png" />
       </div>
-
       <p class="regular-info">
         <b>Şifrenizi sıfırlamak</b> için üyeliğinize bağlı aşağıdaki
         bilgilerden birini girip devam edin.
       </p>
 
-      <div class="eposta-input input-area" style="display: none;">
-        <input type="text" class="phone-input inputText mailData" placeholder="E-Posta"/>
+      <div class="input-area">
+        <input type="text" class="phone-input inputText mailData" placeholder="E-Posta"
+          onkeyup="disableAnotherInput('eMail', $(this).val())" />
         <span class="floating-label">E-Posta</span>
       </div>
 
-      <div class="custom-phone-input input-area">
+      <div class="custom-phone-input input-area error">  <!--Hata varsa buraya error classı ekleniyor. Yoksa error classı olmamalı.-->
         <div class="country-code">
           <span class="title">Ülke Kodu</span>
           <span class="prefix">+90 <img src="img/turkiye-flag.png" /></span>
         </div>
-        <input id="phone" type="tel" name="phone" class="phone-input inputText phoneData" placeholder="Cep Telefonu" />
+        <input id="phone" type="tel" name="phone" class="phone-input inputText phoneData" placeholder="Cep Telefonu"
+          onkeyup="disableAnotherInput('phone', $(this).val())" />
 
-        <span class="floating-label">E-Posta</span>
+        <span class="floating-label">Cep Telefonu</span>
       </div>
 
       <p class="regular-info color-red mt-0">
         Girdiğiniz GSM NO <b>birden fazla hesaba bağlıdır</b>. Bunun yerine e-posta ile şifre sıfırlamayı
         deneyebilirsiniz.
       </p>
-
       <div class="captcha-area">
         <img src="temp/captcha.png" />
       </div>
-
       <div class="action-button passive">Şifremi Sıfırla</div>
-
       <div class="info-fixed-bottom">
         <div class="general-info success">
           Şifre sıfırlama yönergeleri gönderilmiştir.
@@ -59,19 +56,15 @@
       </div>
     </div>
   </div>
-
   <script src="js/jquery.min.js"></script>
   <script src="js/jquery.inputmask.bundle.js"></script>
   <script src="js/main.js"></script>
-
-
   <script>
     $(".inputText").change(function () {
       if (!$(this).val()) {
         $(this).removeClass("hasValue");
       }
     });
-
     $(".inputText").focusout(function () {
       if ($(this).val()) {
         $(this).addClass("hasValue");
@@ -80,16 +73,23 @@
 
     $('.phone-input[type="tel"]').inputmask("(9 9 9) 9 9 9  9 9 9 9");
 
-    $(".phone-input").keyup(function (e) {
-      if (e.target.value.length > 0) {
-        $(".action-button.passive").removeClass("passive")
+    function disableAnotherInput(type, value) {
+      const hasValue = value.length > 0;
+      $(".phoneData, .mailData").prop("disabled", false);
+
+      if (hasValue) {
+        if (type === "eMail") {
+          $(".phoneData").prop("disabled", true);
+        } else if (type === "phone") {
+          $(".mailData").prop("disabled", true);
+        }
+
+        $(".action-button").removeClass("passive");
       }
       else {
-        $(".action-button").addClass("passive")
+        $(".action-button").addClass("passive");
       }
-    });
-
-
+    }
     // TEMP
     $(".action-button").click(function(){
       $(".eposta-input").css("display","block")   

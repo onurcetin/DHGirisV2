@@ -38,7 +38,7 @@
         <span class="floating-label">Cep Telefonu</span>
       </div>
 
-      <p class="regular-info color-red mt-0">
+      <p class="regular-info color-red mt-0" id="gsm-error" style="display: none;">
         Girdiğiniz GSM NO <b>birden fazla hesaba bağlıdır</b>. Bunun yerine e-posta ile şifre sıfırlamayı
         deneyebilirsiniz.
       </p>
@@ -92,9 +92,15 @@
     }
     // TEMP
     $(".action-button").click(function(){
-      $(".eposta-input").css("display","block")   
-      $(".custom-phone-input").css("display","none");
-      $(".action-button").addClass("passive")       
+      // $(".eposta-input").css("display","block")   
+      // $(".custom-phone-input").css("display","none");
+      // $(".action-button").addClass("passive")  
+      
+      if($(".phoneData").val().length > 2){
+        $("#gsm-error").css("display","block");
+        $(".phoneData").prop("disabled", true);
+        $(".mailData").prop("disabled", false);
+      }
     });
   </script>
 </body>

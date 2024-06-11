@@ -36,6 +36,12 @@
           Yardım Paneli
         </div>
       </div>
+
+      <div class="info-fixed-bottom sticky" style="display: none;">
+        <div class="general-info success">
+          E-posta'daki bağlantı ile devam edebilirsiniz.
+        </div>
+      </div>
     </div>
   </div>
 
@@ -48,6 +54,8 @@
       <div class="regular-button">Tamam</div>
     </div>
   </div>
+
+
 
   <script src="js/jquery.min.js"></script>
   <script src="js/jquery.inputmask.bundle.js"></script>
@@ -66,6 +74,10 @@
     $(".regular-button.action").click(function () {
       $(".regular-button.action").css("display", "none");
       $(".regular-button.action.again").css("display", "inline-block");
+      $(".info-fixed-bottom").css("display","inline-block")
+      setTimeout(() => {
+        $(".info-fixed-bottom").css("display","none")
+      }, 5000);
       startTimer();
     })
 

@@ -361,7 +361,7 @@ textarea.phone-input {
 .info-fixed-bottom.sticky {
   position: fixed;
   left: 50%;
-  bottom: 20px;
+  bottom: 55px;
   max-width: 90%;
   transform: translate(-50%, 0);
   width: 335px;

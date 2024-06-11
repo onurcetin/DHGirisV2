@@ -21,9 +21,10 @@
 
       <input id="smsCode" type="text" name="smsCode" class="phone-input" placeholder="- - - -" />
 
-      <div class="regular-button">Kodu Tekrar Gönder <span id="counter">(03:00)</span></div>
+      <div class="regular-button action passive">Gönder</div>
+      <div class="regular-button action again" style="display: none;">Kodu Tekrar Gönder <span id="counter">(03:00)</span></div>
 
-      <div class="popup-info">
+      <div class="popup-info" style="display: none;">
         <div class="box">
           <p class="text">
             Aynı telefon numarası için <b>3 dakikada bir</b> yeni doğrulama
@@ -33,7 +34,7 @@
         </div>
       </div>
 
-      <div class="info-fixed-bottom">
+      <div class="info-fixed-bottom sticky" style="display: none;">
         <div class="general-info success">
           E-posta hesaba bağlandı.
         </div>
@@ -62,10 +63,27 @@
     $('.phone-input[name="smsCode"]').keydown(function () {
       $(this).css("color", "");
     });
+    $(".phone-input").keyup(function (e) {
+      if (e.target.value.length > 0) {
+        $(".regular-button.action.passive").removeClass("passive")
+      }
+      else {
+        $(".regular-button.action").addClass("passive")
+      }
+    });
+    $(".regular-button.action").click(function () {
+      $(".regular-button.action").css("display", "none");
+      $(".regular-button.action.again").css("display", "inline-block");
+      $(".info-fixed-bottom").css("display","inline-block")
+      setTimeout(() => {
+        $(".info-fixed-bottom").css("display","none")
+      }, 5000);
+      startTimer();
+    })
   </script>
 
   <script>
-    window.onload = function () {
+   function startTimer() {
       var counter = 180; // 3 dakika * 60 saniye
       var interval = setInterval(function () {
         document.getElementById('counter').innerText = '(' + formatTime(counter) + ')';
@@ -76,7 +94,7 @@
           document.getElementById('counter').style.display = 'none';
         }
       }, 1000);
-    };
+    }
 
     function formatTime(seconds) {
       var minutes = Math.floor(seconds / 60);
